@@ -57,7 +57,6 @@ export class GerenciarComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.ps.getPedidos().subscribe((pedido) => {
 
       this.listaDePedidos = [];
