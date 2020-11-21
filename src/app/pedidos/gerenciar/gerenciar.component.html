@@ -1,0 +1,147 @@
+
+<div class="container">
+
+    <div class="row" style="margin-top: 25px;margin-bottom:25px">
+        <form class="form-inline col-md-12">
+            <div class="col-md-4 d-inline form-group text-center">
+                <img style="height: 70px;" src="assets/logo.png">
+            </div>
+            <div class="col-md-4 form-group">
+                <label style="color: white;">.</label>
+                <button class="btn btn-danger btn-block rounded-pill radius" disabled>
+                    Sistema Gerenciamento Pedidos App
+                </button>
+            </div>
+            <div class="col-md-2">
+                <div>
+                    <label><small>Tempo médio de preparo</small></label>
+                    <select class="form-control" id="tempoMedioDePreparo" [formControl]="tempoMedioDePreparo">
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                      <option value="25">25</option>
+                      <option value="30">30</option>
+                      <option value="35">35</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="col-md-2">
+                <label style="color: white;">.</label>
+                <button type="button" class="btn btn-success btn-block rounded-pill radius" [disabled]="!tempoMedioDePreparo.valid" (click)="atualizarTempoMedioDePreparo()">
+                    Gravar
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="row" style="padding:10px" >
+        <div class="col-md-5">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <button class="btn btn-dark btn-block radius" disabled>Chamar novo pedido</button>
+                </div>
+                <div class="col-md-12" style="margin-top: 25px;">
+                    <h5 class="text-center">Selecione o App</h5>
+                </div>
+                <div class="col-md-6" style="margin-top: 25px;">
+                    <div><img class="img-logo" src="assets/ifood-logo.png" id="ifood-img" (click)="atualizarparceiro('ifood')"></div>
+                </div>
+                <div class="col-md-6" style="margin-top: 25px;">
+                    <div><img class="img-logo" src="assets/uber-eats-logo.png" id="uberEats-img" (click)="atualizarparceiro('uberEats')"></div>
+                </div>
+                <div class="col-md-6" style="margin-top: 25px;">
+                    <div><img class="img-logo" src="assets/rappi-logo.png" id="rappi-img" (click)="atualizarparceiro('rappi')"></div>
+                </div>
+                <div class="col-md-6" style="margin-top: 25px;" value="james">
+                    <div value="james"><img class="img-logo" src="assets/james-logo.png" id="james-img" (click)="atualizarparceiro('james')"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5" style="padding-top:15px">
+                    <label class="form-control-plaintext" >NÚMERO DO PEDIDO</label>
+                </div>
+                <div class="col-md-4" style="padding-top:15px">
+                    <input type="text" class="form-control"  [formControl]="numeroDoPedido">
+                </div>
+                <div class="col-md-3" style="padding-top:15px">
+                    <button class="btn btn-block btn-danger" style="border-radius: 50px;" [disabled]="!numeroDoPedido.valid" (click)="chamarPedido()">CHAMAR</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 text-center">
+            <div class="vl text-center"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="row text-center">
+                <div class="col-md-9">
+                    <button class="btn btn-dark btn-block radius" disabled>Pedidos chamados</button>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control" id="filtro">
+                        <option value="todos">Todos</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 table-wrapper-scroll-y my-custom-scrollbar" style="padding-top: 10px;">
+                    <table >
+                        <thead>
+                          <tr>
+                            <th colspan="4" class="text-center"  scope="col">Plataforma</th>
+                          </tr>
+                          <tr class="table-secondary" style="color: black;padding:0px;border:1px solid gray">
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/ifood.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/uber.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/rappi.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/james.png"></td>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let p of Pedidos">
+                          <tr class="text-center">
+                            <td>
+                                {{p.ifood.numero}} 
+                                <i *ngIf="p.ifood.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.ifood?.key)"></i>
+                                <i *ngIf="p.ifood.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.ifood?.key)"></i>
+                            </td>
+                            <td>
+                                {{p.uberEats.numero}} 
+                                <i *ngIf="p.uberEats.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.uberEats?.key)"></i>
+                                <i  *ngIf="p.uberEats.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.uberEats?.key)"></i>
+                            </td>
+                            <td>
+                                {{p.rappi.numero}} 
+                                <i *ngIf="p.rappi.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.rappi?.key)"></i>
+                                <i *ngIf="p.rappi.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.rappi?.key)"></i>
+                            </td>
+                            <td>
+                                {{p.james.numero}}
+                                <i *ngIf="p.james.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.james?.key)"></i>
+                                <i *ngIf="p.james.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.james?.key)"></i>
+                            </td>
+                          </tr>
+                         
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 5px;">
+                <div class="col-md-3"></div>
+                <div class="col-md-6"  >
+                    <button  class="btn btn-success btn-block" style="border-radius: 100px;" (click)="showOrHideHistorico()"><i class="fas fa-th"></i> VER HISTÓRICO</button>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+            <div class="row" style="margin-top: 10px;">
+                <div class="col-md-8">
+                    <label>MENSAGEM PERSONALIZADA RODAPÉ</label>
+                    <input class="form-control" placeholder="Insira o texto aqui..." [formControl]="mensagemPersonalizada">
+                </div>
+                <div class="col-md-4">
+                    <label style="color:white">.</label>
+                    <button class="btn btn-success btn-block" style="border-radius: 100px;" [disabled]="!mensagemPersonalizada.valid" (click)="atualizarMensagemPersonalizada()">GRAVAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>

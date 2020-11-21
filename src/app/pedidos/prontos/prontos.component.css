@@ -1,0 +1,25 @@
+
+.b-amarelo {
+    background-color: rgb(237,230,16);
+    color: rgb(199,32,38);
+}
+.b-vermelho {
+    background-color: rgb(198,32,38);
+}
+
+.border-top {
+    border-top: 1px solid rgb(0, 0, 0);
+}
+
+.vertical-center {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.over {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
