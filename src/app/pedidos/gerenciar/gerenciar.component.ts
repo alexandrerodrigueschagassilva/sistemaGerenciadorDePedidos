@@ -98,6 +98,8 @@ export class GerenciarComponent implements OnInit {
     if ( pedido.parceiro != '' && pedido.numero != '' ) {
       this.ps.addPedido(pedido);
       this.showSuccess('Pedido chamado!');
+      let time = new Date().getTime();
+      this.ps.setBip(pedido.parceiro, time);
     }else{
       this.showError('Um erro ocorreu! Tente selecionar um parceiro!');
     }
@@ -132,6 +134,15 @@ export class GerenciarComponent implements OnInit {
   chamarPedidoNovamente(key) {
     this.ps.chamarPedidoNovamente(key);
     this.showSuccess('Pedido chamado novamente!');
+    let time = new Date().getTime();
+    let parceiro: any = ''
+
+    this.ps.getOnePedido(key).valueChanges().subscribe((v) => {
+      parceiro = v[2];
+    });
+    setTimeout(() => {
+      this.ps.setBip(parceiro, time);
+    },2000);
   }
 
   showOrHideHistorico() {

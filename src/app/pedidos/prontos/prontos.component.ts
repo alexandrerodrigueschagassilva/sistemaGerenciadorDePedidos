@@ -49,6 +49,40 @@ export class ProntosComponent implements OnInit {
       this.pedidosPorParceiro.james = this.pedidos.filter((p) => {return p['parceiro'] == 'james'}).sort(this.dynamicSort("updatedAt"));
     });
 
+    this.ps.monitoreBip().snapshotChanges(['child_changed'])
+      .subscribe(actions => {        
+        setTimeout(() => {
+          try{
+            var audio = new Audio('/assets/beep-3.mp3');
+          audio.play();
+          let parceiroModificado = actions[0].payload.val();
+  
+          let parceiros = ['ifood','uberEats','rappi','james'];
+
+          parceiros.forEach(parceiro => {
+            if ( document.getElementById(`${parceiro}List`) != undefined ) {
+              document.getElementById(`${parceiro}List`).className = '';
+              document.getElementById(`${parceiro}ListTime`).className = '';
+            }
+          })
+  
+          let listElement = document.getElementById(`${parceiroModificado}List`);
+          let timeElement = document.getElementById(`${parceiroModificado}ListTime`);
+          listElement.className='marcarBordas';
+          timeElement.className='marcarBordas';
+          console.log(parceiroModificado)
+          setTimeout(() => {
+            parceiros.forEach(parceiro => {
+              if (document.getElementById(`${parceiro}List`).className != undefined){
+                document.getElementById(`${parceiro}List`).className = '';
+                document.getElementById(`${parceiro}ListTime`).className = '';
+              }
+            })
+          },10000)
+          }catch(e) {console.log(e.message)};
+        },1000);
+    });
+
     this.ps.getInformacoesGerais().subscribe((infos) => {
       //console.log(infos)
       this.informacoesGerais['mensagem'] = infos[0];
@@ -69,7 +103,7 @@ export class ProntosComponent implements OnInit {
         property = property.substr(1);
     }
     return function (a,b) {
-        var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
         return result * sortOrder;
     }
   }

@@ -97,7 +97,7 @@
                         <tbody *ngFor="let p of Pedidos">
                           <tr class="text-center">
                             <td>
-                                {{p.ifood.numero}} 
+                                {{p.ifood.numero}}
                                 <i *ngIf="p.ifood.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.ifood?.key)"></i>
                                 <i *ngIf="p.ifood.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.ifood?.key)"></i>
                             </td>

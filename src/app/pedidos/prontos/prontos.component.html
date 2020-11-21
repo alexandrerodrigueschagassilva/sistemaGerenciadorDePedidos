@@ -32,14 +32,14 @@
         <div class="col-md-3" style="color: white;">
             <div class="row" style="height:100%">
                 <div class="col-md-6 text-center" style="background-color:rgb(198,32,38);">
-                    <div  *ngFor="let pp of pedidosPorParceiro.ifood">
+                    <div  *ngFor="let pp of pedidosPorParceiro.ifood" id="ifoodList">
                         <div>
                             {{pp.numero}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="background-color:rgb(135,21,24)">
-                    <div  *ngFor="let pp of pedidosPorParceiro.ifood">
+                    <div  *ngFor="let pp of pedidosPorParceiro.ifood" id="ifoodListTime">
                         <div>
                             {{pp.updatedAt}}
                         </div>
@@ -50,14 +50,14 @@
         <div class="col-md-3" style="color: white;">
             <div class="row" style="height:100%">
                 <div class="col-md-6 text-center" style="background-color:rgb(35,31,32)">
-                    <div  *ngFor="let pp of pedidosPorParceiro.uberEats">
+                    <div  *ngFor="let pp of pedidosPorParceiro.uberEats" id="uberEatsList">
                         <div>
                             {{pp.numero}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="background-color:rgb(0,0,0)">
-                    <div  *ngFor="let pp of pedidosPorParceiro.uberEats">
+                    <div  *ngFor="let pp of pedidosPorParceiro.uberEats" id="uberEatsListTime">
                         <div>
                             {{pp.updatedAt}}
                         </div>
@@ -68,14 +68,14 @@
         <div class="col-md-3" style="color: white;">
             <div class="row" style="height:100%">
                 <div class="col-md-6 text-center" style="background-color:rgb(232,109,90)">
-                    <div  *ngFor="let pp of pedidosPorParceiro.rappi">
+                    <div  *ngFor="let pp of pedidosPorParceiro.rappi" id="rappiList">
                         <div>
                             {{pp.numero}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="background-color:rgb(199,93,77)">
-                    <div  *ngFor="let pp of pedidosPorParceiro.rappi">
+                    <div  *ngFor="let pp of pedidosPorParceiro.rappi" id="rappiListTime">
                         <div>
                             {{pp.updatedAt}}
                         </div>
@@ -86,14 +86,14 @@
         <div class="col-md-3" style="color: white;">
             <div class="row" style="height:100%">
                 <div class="col-md-6 text-center" style="background-color:rgb(152,77,237)">
-                    <div  *ngFor="let pp of pedidosPorParceiro.james">
+                    <div  *ngFor="let pp of pedidosPorParceiro.james" id="jamesList">
                         <div>
                             {{pp.numero}}
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="background-color:rgb(128,66,199)">
-                    <div  *ngFor="let pp of pedidosPorParceiro.james">
+                    <div  *ngFor="let pp of pedidosPorParceiro.james" id="jamesListTime">
                         <div>
                             {{pp.updatedAt}}
                         </div>
@@ -103,10 +103,10 @@
         </div>
     </div>
     <div class="row b-vermelho" style="height: 10%;color:white">
-        <div class="col-md-8"><h3 class="vertical-center">{{informacoesGerais['mensagem']}}</h3></div>
+        <div class="col-md-8" style="height: 100%;"><h3 class="vertical-center">{{informacoesGerais['mensagem']}}</h3></div>
         <div class="col-md-2" style="height: 100%;">
             <img style="height: 100%;" src="assets/tempoMedioPreparo.png"> </div>
-        <div class="col-md-2" >
+        <div class="col-md-2" style="height: 100%;">
             <h3 class="vertical-center">{{informacoesGerais['tempoMedio']}} min</h3>
         </div>
     </div>

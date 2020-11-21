@@ -23,3 +23,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
 }
+
+.marcarBordas {
+    background-color: rgb(7, 154, 90);
+}

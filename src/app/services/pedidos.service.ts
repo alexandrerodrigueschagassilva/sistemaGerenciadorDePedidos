@@ -16,6 +16,17 @@ export class PedidosService {
     this.infGerais = db.database.ref('infoGerais');
   }
 
+  setBip(parceiro, timestamp) {
+    this.db.database.ref('bip').set({
+      parceiro: parceiro,
+      timestamp
+    });
+  };
+
+  monitoreBip() {
+    return this.db.list('bip');
+  }
+
   addPedido(pedido: Pedido) {
     this.db.database.ref('pedidos').push(pedido);
   }
@@ -39,6 +50,10 @@ export class PedidosService {
   chamarPedidoNovamente(key) {
     console.log('chamarPedidoNovamente: ', key)
     this.db.database.ref(`pedidos/${key}`).update({updatedAt: new Date().getTime(), status: 'chamado'});
+  }
+
+  getOnePedido(key) {
+    return this.db.list(`pedidos/${key}`);
   }
   
   updateInformacoesGerais(informacao) {
