@@ -42,8 +42,7 @@ export class PedidosService {
   }
 
   liberarPedido(key) {
-
-    this.db.database.ref(`pedidos/${key}`).update({updatedAt: new Date().getTime(), status: 'liberadocls'})
+    this.db.database.ref(`pedidos/${key}`).update({updatedAt: new Date().getTime(), status: 'liberado'})
     console.log('liberar pedido: ', key);
   }
   

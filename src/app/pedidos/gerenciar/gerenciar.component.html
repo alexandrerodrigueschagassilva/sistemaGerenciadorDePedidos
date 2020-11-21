@@ -125,7 +125,7 @@
             <div class="row" style="margin-top: 5px;">
                 <div class="col-md-3"></div>
                 <div class="col-md-6"  >
-                    <button  class="btn btn-success btn-block" style="border-radius: 100px;" (click)="showOrHideHistorico()"><i class="fas fa-th"></i> VER HISTÓRICO</button>
+                    <button  class="btn btn-success btn-block" style="border-radius: 100px;" (click)="open(ModalHistorico)"><i class="fas fa-th"></i> VER HISTÓRICO</button>
                 </div>
                 <div class="col-md-3"></div>
             </div>
@@ -142,6 +142,46 @@
             </div>
         </div>
     </div>
+
+    <ng-template #ModalHistorico let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Histórico</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group" >
+              <div class="input-group">
+                <table class="table table-striped" style="height: 70%; overflow-y:auto">
+                    <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col" class="text-center">Ifood</th>
+                      <th scope="col" class="text-center">Uber Eats</th>
+                      <th scope="col" class="text-center">Rappi</th>
+                      <th scope="col" class="text-center">James</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let hist of historicoTable; index as i">
+                      <th scope="row">{{ i + 1 }}</th>
+                      <th class="text-center">{{hist.ifood?.numero}}</th>
+                      <th class="text-center">{{hist.uberEats?.numero}}</th>
+                      <th class="text-center">{{hist.rappi?.numero}}</th>
+                      <th class="text-center">{{hist.james?.numero}}</th>                      
+                    </tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('OK click')">OK</button>
+        </div>
+      </ng-template>
 
     
 </div>

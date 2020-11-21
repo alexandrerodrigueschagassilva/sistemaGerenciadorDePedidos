@@ -3,6 +3,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { PedidosService } from '../../services/pedidos.service';
 import { Pedido } from 'src/app/interfaces/pedidos.interface';
 import { ToastrService } from 'ngx-toastr';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { AutenticacaoService } from 'src/app/services/autenticacao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gerenciar',
@@ -29,12 +32,27 @@ export class GerenciarComponent implements OnInit {
     rappi: [],
     james: []
   };
-  showHistórico = false;
+  historicoTable = [];
 
   numeroDoPedido = new FormControl('',[Validators.required, Validators.maxLength(5), Validators.minLength(4)]);
   tempoMedioDePreparo = new FormControl('',[Validators.required]);
   mensagemPersonalizada = new FormControl('',[Validators.required, Validators.maxLength(150)]);
-  constructor(private ps: PedidosService, public toastr: ToastrService) {
+  closeResult = '';
+  constructor
+  (
+    private ps: PedidosService, 
+    public toastr: ToastrService,
+    private modalService: NgbModal,
+    private auth: AutenticacaoService,
+    private router: Router
+  ) 
+  {
+    this.auth.getCurrentUser().subscribe(user => {
+      if( user == null) {
+        console.log('user', user);
+        this.router.navigateByUrl('/');
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -87,6 +105,80 @@ export class GerenciarComponent implements OnInit {
 
   }
 
+  open(content) {
+    this.ps.getHistorico().subscribe((values) => {
+      this.historicoPorParceiro = {
+        ifood: [],
+        uberEats: [],
+        rappi: [],
+        james: []
+      };
+
+      this.historicoTable = []
+      this.historico = [];
+      //console.log(values)
+      values.forEach((v) => {
+        let obj = {}
+        obj = 
+        {
+          "parceiro": v.payload.val()['parceiro'],
+          "status": v.payload.val()['status'],
+          "numero": v.payload.val()['numero'],
+          "updatedAt": new Date(v.payload.val()['updatedAt']).toLocaleTimeString(navigator.language, {
+            hour: '2-digit',
+            minute:'2-digit'
+          })
+        };
+        this.historico.push(obj);
+      });
+      
+      this.historicoPorParceiro.ifood = this.historico.filter((p) => {return p['parceiro'] == 'ifood'}).sort(this.dynamicSort("updatedAt"));
+      this.historicoPorParceiro.uberEats = this.historico.filter((p) => {return p['parceiro'] == 'uberEats'}).sort(this.dynamicSort("updatedAt"));
+      this.historicoPorParceiro.rappi = this.historico.filter((p) => {return p['parceiro'] == 'rappi'}).sort(this.dynamicSort("updatedAt"));
+      this.historicoPorParceiro.james = this.historico.filter((p) => {return p['parceiro'] == 'james'}).sort(this.dynamicSort("updatedAt"));
+
+      this.historico.forEach((h, index) => {
+
+        let obj = {};
+        this.historicoPorParceiro.ifood[index] != undefined ? obj['ifood'] = this.historicoPorParceiro.ifood[index] : '';
+        this.historicoPorParceiro.uberEats[index] != undefined ? obj['uberEats'] = this.historicoPorParceiro.uberEats[index] : '';
+        this.historicoPorParceiro.rappi[index] != undefined ? obj['rappi'] = this.historicoPorParceiro.rappi[index] : '';
+        this.historicoPorParceiro.james[index] != undefined ? obj['james'] = this.historicoPorParceiro.james[index] : '';
+        
+        !this.isEmpty(obj)  ? this.historicoTable.push(obj) : '';
+        
+      });
+    });
+    
+    setTimeout(() => {
+      console.log('histórico', this.historicoTable);
+      this.modalService.open(content, {size: 'lg'}).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    },1000)
+  };
+
+  isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return true;
+}
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
   chamarPedido() {
     let pedido: Pedido = {
       parceiro: this.parceiro,
@@ -100,6 +192,7 @@ export class GerenciarComponent implements OnInit {
       this.showSuccess('Pedido chamado!');
       let time = new Date().getTime();
       this.ps.setBip(pedido.parceiro, time);
+      this.numeroDoPedido.setValue('');
     }else{
       this.showError('Um erro ocorreu! Tente selecionar um parceiro!');
     }
@@ -122,7 +215,6 @@ export class GerenciarComponent implements OnInit {
   
   atualizarMensagemPersonalizada() {
     this.ps.updateInformacoesGerais({mensagemPersonalizada: this.mensagemPersonalizada.value, updatedAt: new Date().getTime()});
-    console.log(this.mensagemPersonalizada.value);
     this.showSuccess('Mensagem atualizada!');
   }
 
@@ -144,47 +236,6 @@ export class GerenciarComponent implements OnInit {
       this.ps.setBip(parceiro, time);
     },2000);
   }
-
-  showOrHideHistorico() {
-    
-    this.showHistórico = !this.showHistórico;
-
-    if (this.showHistórico) {
-      this.ps.getHistorico().subscribe((values) => {
-        this.historicoPorParceiro = {
-          ifood: [],
-          uberEats: [],
-          rappi: [],
-          james: []
-        };
-  
-  
-        this.historico = [];
-        values.forEach((v) => {
-          let obj = {}
-          obj = 
-          {
-            "parceiro": v.payload.val()['parceiro'],
-            "status": v.payload.val()['status'],
-            "numero": v.payload.val()['numero'],
-            "updatedAt": new Date(v.payload.val()['updatedAt']).toLocaleTimeString(navigator.language, {
-              hour: '2-digit',
-              minute:'2-digit'
-            })
-          };
-          this.historico.push(obj);
-        });
-        
-        this.historicoPorParceiro.ifood = this.historico.filter((p) => {return p['parceiro'] == 'ifood'}).sort(this.dynamicSort("updatedAt"));
-        this.historicoPorParceiro.uberEats = this.historico.filter((p) => {return p['parceiro'] == 'uberEats'}).sort(this.dynamicSort("updatedAt"));
-        this.historicoPorParceiro.rappi = this.historico.filter((p) => {return p['parceiro'] == 'rappi'}).sort(this.dynamicSort("updatedAt"));
-        this.historicoPorParceiro.james = this.historico.filter((p) => {return p['parceiro'] == 'james'}).sort(this.dynamicSort("updatedAt"));
-      });
-    }
-    console.log(this.showHistórico);
-
-  }
-
 
   showSuccess(mensagem) {
     this.toastr.success(mensagem);
