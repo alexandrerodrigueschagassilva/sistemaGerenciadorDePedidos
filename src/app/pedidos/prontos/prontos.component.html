@@ -5,7 +5,7 @@
             <img style="height: 100%;width:100%" src="assets/logoPedidosProntos.png">
         </div>
         <div style="height: 100%;width:100%" class="col-md-8 text-center b-amarelo">
-            <h1 class="vertical-center text-center">PEDIDOS PRONTOS APP PARCEIROS</h1>
+            <h1 class="vertical-center text-center">PEDIDOS PRONTOS APPS PARCEIROS</h1>
         </div>
     </div>
     <div *ngIf="false" class="row b-amarelo border-top" style="height: 8%;">
@@ -34,14 +34,14 @@
                 <div class="col-md-6 text-center" style="background-color:rgb(198,32,38);">
                     <div  *ngFor="let pp of pedidosPorParceiro.ifood" id="ifoodList">
                         <div>
-                            {{pp.numero}}
+                            <h4>{{pp.numero}}</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="background-color:rgb(135,21,24)">
                     <div  *ngFor="let pp of pedidosPorParceiro.ifood" id="ifoodListTime">
                         <div>
-                            {{pp.updatedAt}}
+                            <h4>{{pp.updatedAt}}</h4>
                         </div>
                     </div>
                 </div>
@@ -52,14 +52,14 @@
                 <div class="col-md-6 text-center" style="background-color:rgb(35,31,32)">
                     <div  *ngFor="let pp of pedidosPorParceiro.uberEats" id="uberEatsList">
                         <div>
-                            {{pp.numero}}
+                            <h4>{{pp.numero}}</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="background-color:rgb(0,0,0)">
                     <div  *ngFor="let pp of pedidosPorParceiro.uberEats" id="uberEatsListTime">
                         <div>
-                            {{pp.updatedAt}}
+                            <h4>{{pp.updatedAt}}</h4>
                         </div>
                     </div>
                 </div>
@@ -70,14 +70,14 @@
                 <div class="col-md-6 text-center" style="background-color:rgb(232,109,90)">
                     <div  *ngFor="let pp of pedidosPorParceiro.rappi" id="rappiList">
                         <div>
-                            {{pp.numero}}
+                            <h4></h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="background-color:rgb(199,93,77)">
                     <div  *ngFor="let pp of pedidosPorParceiro.rappi" id="rappiListTime">
                         <div>
-                            {{pp.updatedAt}}
+                            <h4></h4>
                         </div>
                     </div>
                 </div>
@@ -88,14 +88,14 @@
                 <div class="col-md-6 text-center" style="background-color:rgb(152,77,237)">
                     <div  *ngFor="let pp of pedidosPorParceiro.james" id="jamesList">
                         <div>
-                            {{pp.numero}}
+                            <h4></h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 text-center" style="background-color:rgb(128,66,199)">
                     <div  *ngFor="let pp of pedidosPorParceiro.james" id="jamesListTime">
                         <div>
-                            {{pp.updatedAt}}
+                            <h4></h4>
                         </div>
                     </div>
                 </div>

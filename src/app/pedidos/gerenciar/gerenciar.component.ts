@@ -213,8 +213,12 @@ export class GerenciarComponent implements OnInit {
   }
   
   atualizarMensagemPersonalizada() {
-    this.ps.updateInformacoesGerais({mensagemPersonalizada: this.mensagemPersonalizada.value, updatedAt: new Date().getTime()});
-    this.showSuccess('Mensagem atualizada!');
+    if( this.mensagemPersonalizada.value != '' ) {
+      this.ps.updateInformacoesGerais({mensagemPersonalizada: this.mensagemPersonalizada.value, updatedAt: new Date().getTime()});
+      this.showSuccess('Mensagem atualizada!');
+    }else{
+      this.showError('Tente preencher com uma mensagem');
+    }
   }
 
   liberarPedido(key) {

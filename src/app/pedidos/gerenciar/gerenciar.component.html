@@ -59,7 +59,7 @@
                     <label class="form-control-plaintext" >NÚMERO DO PEDIDO</label>
                 </div>
                 <div class="col-md-4" style="padding-top:15px">
-                    <input type="text" class="form-control"  [formControl]="numeroDoPedido">
+                    <input type="text" class="form-control"  [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()"> 
                 </div>
                 <div class="col-md-3" style="padding-top:15px">
                     <button class="btn btn-block btn-danger" style="border-radius: 50px;" [disabled]="!numeroDoPedido.valid" (click)="chamarPedido()">CHAMAR</button>
@@ -133,7 +133,7 @@
             <div class="row" style="margin-top: 10px;">
                 <div class="col-md-8">
                     <label>MENSAGEM PERSONALIZADA RODAPÉ</label>
-                    <input class="form-control" placeholder="Insira o texto aqui..." [formControl]="mensagemPersonalizada">
+                    <input class="form-control" placeholder="Insira o texto aqui..." [formControl]="mensagemPersonalizada" (keyup.enter)="atualizarMensagemPersonalizada()">
                 </div>
                 <div class="col-md-4">
                     <label style="color:white">.</label>
@@ -158,6 +158,7 @@
                     <thead>
                     <tr>
                       <th scope="col">#</th>
+                      <th scope="col" class="text-center">horário</th>
                       <th scope="col" class="text-center">Ifood</th>
                       <th scope="col" class="text-center">Uber Eats</th>
                       <th scope="col" class="text-center">Rappi</th>
@@ -167,6 +168,7 @@
                     <tbody>
                     <tr *ngFor="let hist of historicoTable; index as i">
                       <th scope="row">{{ i + 1 }}</th>
+                      <th class="text-center">{{hist.ifood?.updatedAt}}</th>
                       <th class="text-center">{{hist.ifood?.numero}}</th>
                       <th class="text-center">{{hist.uberEats?.numero}}</th>
                       <th class="text-center">{{hist.rappi?.numero}}</th>
