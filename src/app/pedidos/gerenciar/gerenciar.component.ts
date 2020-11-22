@@ -15,6 +15,10 @@ import { Router } from '@angular/router';
 
 
 export class GerenciarComponent implements OnInit {
+  showifood = false;
+  showuberEats = false;
+  showrappi = false;
+  showjames = false;
 
   parceiro: String = '';
   listaDePedidos : Pedido[] = [];
@@ -180,6 +184,7 @@ export class GerenciarComponent implements OnInit {
   }
 
   chamarPedido() {
+
     let pedido: Pedido = {
       parceiro: this.parceiro,
       status: 'chamado',
@@ -193,15 +198,29 @@ export class GerenciarComponent implements OnInit {
       let time = new Date().getTime();
       this.ps.setBip(pedido.parceiro, time);
       this.numeroDoPedido.setValue('');
+
+      this.showifood = false;
+      this.showuberEats = false;
+      this.showrappi = false;
+      this.showjames = false;
     }else{
       this.showError('Um erro ocorreu! Tente selecionar um parceiro!');
     }
   }
 
   atualizarparceiro(parceiro) {
+    this.showifood = false;
+    this.showuberEats = false;
+    this.showrappi = false;
+    this.showjames = false;
     this.parceiro = parceiro;
+    parceiro == 'ifood' ? this.showifood = true : '';
+    parceiro == 'uberEats'? this.showuberEats = true : '';
+    parceiro == 'rappi'? this.showrappi = true : '';
+    parceiro == 'james'? this.showjames = true : '';
+    console.log('parceiro', this.showifood)
 
-    document.getElementById(`${parceiro}Input`).focus();
+    setTimeout(() => {document.getElementById(`${parceiro}Input`).focus();},500)
 
     document.getElementById(`ifood-img`).className = 'img-logo';
     document.getElementById(`uberEats-img`).className = 'img-logo';

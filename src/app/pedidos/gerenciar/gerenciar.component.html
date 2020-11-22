@@ -44,25 +44,25 @@
                 <div class="col-md-6" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/ifood-logo.png" id="ifood-img" (click)="atualizarparceiro('ifood')">
-                        <input id="ifoodInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input *ngIf="showifood" id="ifoodInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
                 <div class="col-md-6" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/uber-eats-logo.png" id="uberEats-img" (click)="atualizarparceiro('uberEats')">
-                        <input id="uberEatsInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input *ngIf="showuberEats" id="uberEatsInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
                 <div class="col-md-6" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/rappi-logo.png" id="rappi-img" (click)="atualizarparceiro('rappi')">
-                        <input id="rappiInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input *ngIf="showrappi" id="rappiInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
                 <div class="col-md-6" style="margin-top: 25px;" value="james">
                     <div value="james">
                         <img class="img-logo" src="assets/james-logo.png" id="james-img" (click)="atualizarparceiro('james')">
-                        <input id="jamesInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input *ngIf="showjames" id="jamesInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
             </div>
