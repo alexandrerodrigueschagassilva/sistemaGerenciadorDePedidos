@@ -16,6 +16,9 @@ import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import {CdkTableModule} from '@angular/cdk/table';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +35,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    CdkTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     NgbModule
   ],

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./gerenciar.component.css']
 })
 
+
 export class GerenciarComponent implements OnInit {
 
   parceiro: String = '';
@@ -199,6 +200,9 @@ export class GerenciarComponent implements OnInit {
 
   atualizarparceiro(parceiro) {
     this.parceiro = parceiro;
+
+    document.getElementById(`${parceiro}Input`).focus();
+
     document.getElementById(`ifood-img`).className = 'img-logo';
     document.getElementById(`uberEats-img`).className = 'img-logo';
     document.getElementById(`rappi-img`).className = 'img-logo';
