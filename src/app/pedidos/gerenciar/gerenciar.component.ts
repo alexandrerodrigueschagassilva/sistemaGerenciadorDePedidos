@@ -271,6 +271,7 @@ export class GerenciarComponent implements OnInit {
     this.toastr.error(mensagem);
   }
 
+  
   dynamicSort(property) {
     var sortOrder = 1;
     if(property[0] === "-") {
