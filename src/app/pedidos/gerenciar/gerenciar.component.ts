@@ -128,10 +128,17 @@ export class GerenciarComponent implements OnInit {
           "parceiro": v.payload.val()['parceiro'],
           "status": v.payload.val()['status'],
           "numero": v.payload.val()['numero'],
+          "updatedAt": new Date(v.payload.val()['updatedAt']).getDate() + "/" +new Date(v.payload.val()['updatedAt']).getMonth() + "/" +new Date(v.payload.val()['updatedAt']).getFullYear() + " " +new Date(v.payload.val()['updatedAt']).getHours() + ":" +new Date(v.payload.val()['updatedAt']).getMinutes()
+
+          //"updatedAt": new Date(v.payload.val()['updatedAt']).toLocaleString("pt-br",{formatMatcher:'dd/mm/aa mm:ss'})
+          //"updatedAt": new Date(v.payload.val()['updatedAt']).toLocaleString("pt-br",{formatMatcher:'dd/mm/aa mm:ss'})
+          
+          /*
           "updatedAt": new Date(v.payload.val()['updatedAt']).toLocaleTimeString(navigator.language, {
             hour: '2-digit',
             minute:'2-digit'
           })
+          */
         };
         this.historico.push(obj);
       });

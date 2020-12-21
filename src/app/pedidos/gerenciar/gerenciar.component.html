@@ -169,7 +169,6 @@
                     <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col" class="text-center">horário</th>
                       <th scope="col" class="text-center">Ifood</th>
                       <th scope="col" class="text-center">Uber Eats</th>
                       <th scope="col" class="text-center">Rappi</th>
@@ -179,11 +178,10 @@
                     <tbody>
                     <tr *ngFor="let hist of historicoTable; index as i">
                       <th scope="row">{{ i + 1 }}</th>
-                      <th class="text-center">{{hist.ifood?.updatedAt}}</th>
-                      <th class="text-center">{{hist.ifood?.numero}}</th>
-                      <th class="text-center">{{hist.uberEats?.numero}}</th>
-                      <th class="text-center">{{hist.rappi?.numero}}</th>
-                      <th class="text-center">{{hist.james?.numero}}</th>                      
+                      <th class="text-center"><small><b>{{hist.ifood?.numero}}</b> - {{hist.ifood?.updatedAt}}</small></th>
+                      <th class="text-center"><small><b>{{hist.uberEats?.numero}}</b> - {{hist.uberEats?.updatedAt}}</small></th>
+                      <th class="text-center"><small><b>{{hist.rappi?.numero}}</b> - {{hist.rappi?.updatedAt}}</small></th>
+                      <th class="text-center"><small><b>{{hist.james?.numero}}</b> - {{hist.james?.updatedAt}}</small></th>                      
                     </tr>
                     </tbody>
                   </table>

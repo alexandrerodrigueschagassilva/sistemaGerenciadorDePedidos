@@ -121,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sistemaGerenciadorDePedidos"
+    }
+  },
+  "defaultProject": "sistemaGerenciadorDePedidos",
+  "cli": {
+    "analytics": "1b3f6e76-0aa8-4482-a89e-7f95f4ebb0fe"
+  }
 }
