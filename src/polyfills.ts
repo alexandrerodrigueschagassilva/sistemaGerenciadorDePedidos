@@ -70,8 +70,9 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 //import 'ie-shim';
 
 // IE9, IE10 and IE11 requires all of the following polyfills.
-//import 'core-js/es';
+import 'core-js/es';
 
+/*
 import 'core-js/es/symbol';
 import 'core-js/es/object';
 import 'core-js/es/function';
@@ -86,9 +87,9 @@ import 'core-js/es/regexp';
 import 'core-js/es/map';
 import 'core-js/es/weak-map';
 import 'core-js/es/set';
-
+*/
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
-// import 'classlist.js';  // Run `npm install --save classlist.js`.
+import 'classlist.js';  // Run `npm install --save classlist.js`.
 
 // Evergreen browsers require these.
-import 'core-js/es/reflect';
+//import 'core-js/es/reflect';
