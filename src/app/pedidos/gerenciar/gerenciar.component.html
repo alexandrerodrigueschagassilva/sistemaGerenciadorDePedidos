@@ -41,6 +41,8 @@
                 <div class="col-md-12" style="margin-top: 25px;">
                     <h5 class="text-center">Selecione o App</h5>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/ifood-logo.png" id="ifood-img" (click)="atualizarparceiro('ifood')">
@@ -65,7 +67,15 @@
                         <input *ngIf="showjames" id="jamesInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
+                <div class="col-md-6" style="margin-top: 25px;" value="logo99">
+                    <div value="logo99">
+                        <img class="img-logo" src="assets/logo99.png" id="logo99-img" (click)="atualizarparceiro('logo99')">
+                        <input *ngIf="showlogo99" id="logo99Input" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                    </div>
+                </div>
             </div>
+                
+            
             <div class="row" hidden="true">
                 <div class="col-md-5" style="padding-top:15px">
                     <label class="form-control-plaintext" >NÚMERO DO PEDIDO</label>
@@ -97,13 +107,14 @@
                     <table >
                         <thead>
                           <tr>
-                            <th colspan="4" class="text-center"  scope="col">Plataforma</th>
+                            <th colspan="5" class="text-center"  scope="col">Plataforma</th>
                           </tr>
                           <tr class="table-secondary" style="color: black;padding:0px;border:1px solid gray">
-                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/ifood.png"></td>
-                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/uber.png"></td>
-                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/rappi.png"></td>
-                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/james.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:180px" src="assets/img-apps/ifood.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:180px" src="assets/img-apps/uber.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:180px" src="assets/img-apps/rappi.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:180px" src="assets/img-apps/james.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/logo99.png"></td>
                           </tr>
                         </thead>
                         <tbody *ngFor="let p of Pedidos">
@@ -127,6 +138,11 @@
                                 {{p.james.numero}}
                                 <i *ngIf="p.james.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.james?.key)"></i>
                                 <i *ngIf="p.james.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.james?.key)"></i>
+                            </td>
+                            <td>
+                                {{p.logo99.numero}}
+                                <i *ngIf="p.logo99.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.logo99?.key)"></i>
+                                <i *ngIf="p.logo99.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.logo99?.key)"></i>
                             </td>
                           </tr>
                          
@@ -168,20 +184,20 @@
                 <table class="table table-striped" style="height: 70%; overflow-y:auto">
                     <thead>
                     <tr>
-                      <th scope="col">#</th>
                       <th scope="col" class="text-center">Ifood</th>
                       <th scope="col" class="text-center">Uber Eats</th>
                       <th scope="col" class="text-center">Rappi</th>
                       <th scope="col" class="text-center">James</th>
+                      <th scope="col" class="text-center">99 Food</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let hist of historicoTable; index as i">
-                      <th scope="row">{{ i + 1 }}</th>
                       <th class="text-center"><small><b>{{hist.ifood?.numero}}</b> - {{hist.ifood?.updatedAt}}</small></th>
                       <th class="text-center"><small><b>{{hist.uberEats?.numero}}</b> - {{hist.uberEats?.updatedAt}}</small></th>
                       <th class="text-center"><small><b>{{hist.rappi?.numero}}</b> - {{hist.rappi?.updatedAt}}</small></th>
                       <th class="text-center"><small><b>{{hist.james?.numero}}</b> - {{hist.james?.updatedAt}}</small></th>                      
+                      <th class="text-center"><small><b>{{hist.logo99?.numero}}</b> - {{hist.logo99?.updatedAt}}</small></th>                      
                     </tr>
                     </tbody>
                   </table>

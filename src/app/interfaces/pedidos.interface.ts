@@ -11,7 +11,8 @@ export enum parceiros {
     'ifood',
     'uberEats',
     'rappi',
-    'james'
+    'james',
+    'logo99'
 }
 
 export enum status {

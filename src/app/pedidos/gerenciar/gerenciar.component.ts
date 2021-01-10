@@ -19,6 +19,7 @@ export class GerenciarComponent implements OnInit {
   showuberEats = false;
   showrappi = false;
   showjames = false;
+  showlogo99 = false;
 
   parceiro: String = '';
   listaDePedidos : Pedido[] = [];
@@ -26,7 +27,8 @@ export class GerenciarComponent implements OnInit {
     ifood : [],
     uberEats : [],
     rappi : [],
-    james : []
+    james : [],
+    logo99 : [],
   };
   Pedidos = [];
 
@@ -35,7 +37,8 @@ export class GerenciarComponent implements OnInit {
     ifood: [],
     uberEats: [],
     rappi: [],
-    james: []
+    james: [],
+    logo99: []
   };
   historicoTable = [];
 
@@ -81,21 +84,24 @@ export class GerenciarComponent implements OnInit {
         this.pedidosOrdenados.uberEats = this.listaDePedidos.filter((p)=> {return p.parceiro == 'uberEats'});
         this.pedidosOrdenados.rappi = this.listaDePedidos.filter((p)=> {return p.parceiro == 'rappi'});
         this.pedidosOrdenados.james = this.listaDePedidos.filter((p)=> {return p.parceiro == 'james'});
+        this.pedidosOrdenados.logo99 = this.listaDePedidos.filter((p)=> {return p.parceiro == 'logo99'});
 
         this.Pedidos = [];  
         for( let i = 0 ; i < this.listaDePedidos.length; i++ ) {
   
-          let obj = {ifood: {}, uberEats: {}, rappi: {}, james: {}};
+          let obj = {ifood: {}, uberEats: {}, rappi: {}, james: {}, logo99: {}};
           this.pedidosOrdenados.ifood[i] != undefined ? obj.ifood = this.pedidosOrdenados.ifood[i] : '';
           this.pedidosOrdenados.uberEats[i] != undefined ? obj.uberEats = this.pedidosOrdenados.uberEats[i] : '';
           this.pedidosOrdenados.rappi[i] != undefined ? obj.rappi = this.pedidosOrdenados.rappi[i] : '';
           this.pedidosOrdenados.james[i] != undefined ? obj.james = this.pedidosOrdenados.james[i] : '';
+          this.pedidosOrdenados.logo99[i] != undefined ? obj.logo99 = this.pedidosOrdenados.logo99[i] : '';
 
           if ( 
             this.pedidosOrdenados.ifood[i] != undefined ||
             this.pedidosOrdenados.uberEats[i] != undefined ||
             this.pedidosOrdenados.rappi[i] != undefined ||
-            this.pedidosOrdenados.james[i] !=  undefined
+            this.pedidosOrdenados.james[i] !=  undefined ||
+            this.pedidosOrdenados.logo99[i] !=  undefined
           ) 
           {
             this.Pedidos.push(obj);
@@ -115,7 +121,8 @@ export class GerenciarComponent implements OnInit {
         ifood: [],
         uberEats: [],
         rappi: [],
-        james: []
+        james: [],
+        logo99: []
       };
 
       this.historicoTable = []
@@ -130,15 +137,6 @@ export class GerenciarComponent implements OnInit {
           "numero": v.payload.val()['numero'],
           "updatedAt": new Date(v.payload.val()['updatedAt']).getDate() + "/" +new Date(v.payload.val()['updatedAt']).getMonth() + "/" +new Date(v.payload.val()['updatedAt']).getFullYear() + " " +new Date(v.payload.val()['updatedAt']).getHours() + ":" +new Date(v.payload.val()['updatedAt']).getMinutes()
 
-          //"updatedAt": new Date(v.payload.val()['updatedAt']).toLocaleString("pt-br",{formatMatcher:'dd/mm/aa mm:ss'})
-          //"updatedAt": new Date(v.payload.val()['updatedAt']).toLocaleString("pt-br",{formatMatcher:'dd/mm/aa mm:ss'})
-          
-          /*
-          "updatedAt": new Date(v.payload.val()['updatedAt']).toLocaleTimeString(navigator.language, {
-            hour: '2-digit',
-            minute:'2-digit'
-          })
-          */
         };
         this.historico.push(obj);
       });
@@ -147,6 +145,7 @@ export class GerenciarComponent implements OnInit {
       this.historicoPorParceiro.uberEats = this.historico.filter((p) => {return p['parceiro'] == 'uberEats'}).sort(this.dynamicSort("updatedAt"));
       this.historicoPorParceiro.rappi = this.historico.filter((p) => {return p['parceiro'] == 'rappi'}).sort(this.dynamicSort("updatedAt"));
       this.historicoPorParceiro.james = this.historico.filter((p) => {return p['parceiro'] == 'james'}).sort(this.dynamicSort("updatedAt"));
+      this.historicoPorParceiro.logo99 = this.historico.filter((p) => {return p['parceiro'] == 'logo99'}).sort(this.dynamicSort("updatedAt"));
 
       this.historico.forEach((h, index) => {
 
@@ -155,6 +154,7 @@ export class GerenciarComponent implements OnInit {
         this.historicoPorParceiro.uberEats[index] != undefined ? obj['uberEats'] = this.historicoPorParceiro.uberEats[index] : '';
         this.historicoPorParceiro.rappi[index] != undefined ? obj['rappi'] = this.historicoPorParceiro.rappi[index] : '';
         this.historicoPorParceiro.james[index] != undefined ? obj['james'] = this.historicoPorParceiro.james[index] : '';
+        this.historicoPorParceiro.logo99[index] != undefined ? obj['logo99'] = this.historicoPorParceiro.logo99[index] : '';
         
         !this.isEmpty(obj)  ? this.historicoTable.push(obj) : '';
         
@@ -210,6 +210,7 @@ export class GerenciarComponent implements OnInit {
       this.showuberEats = false;
       this.showrappi = false;
       this.showjames = false;
+      this.showlogo99 = false;
     }else{
       this.showError('Um erro ocorreu! Tente selecionar um parceiro!');
     }
@@ -220,11 +221,13 @@ export class GerenciarComponent implements OnInit {
     this.showuberEats = false;
     this.showrappi = false;
     this.showjames = false;
+    this.showlogo99 = false;
     this.parceiro = parceiro;
     parceiro == 'ifood' ? this.showifood = true : '';
     parceiro == 'uberEats'? this.showuberEats = true : '';
     parceiro == 'rappi'? this.showrappi = true : '';
     parceiro == 'james'? this.showjames = true : '';
+    parceiro == 'logo99'? this.showlogo99 = true : '';
     console.log('parceiro', this.showifood)
 
     setTimeout(() => {document.getElementById(`${parceiro}Input`).focus();},500)
@@ -233,6 +236,7 @@ export class GerenciarComponent implements OnInit {
     document.getElementById(`uberEats-img`).className = 'img-logo';
     document.getElementById(`rappi-img`).className = 'img-logo';
     document.getElementById(`james-img`).className = 'img-logo';
+    document.getElementById(`logo99-img`).className = 'img-logo';
     document.getElementById(`${parceiro}-img`).className = 'img-logo checked';
   }
 

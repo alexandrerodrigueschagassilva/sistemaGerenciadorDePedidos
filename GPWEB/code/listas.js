@@ -10,12 +10,15 @@ var rappiListElement         = document.getElementById('rappiList');
 var rappiListTimeElement     = document.getElementById('rappiListTime');
 var jamesListElement         = document.getElementById('jamesList');
 var jamesListTimeElement     = document.getElementById('jamesListTime');
+var logo99ListElement         = document.getElementById('logo99List');
+var logo99ListTimeElement     = document.getElementById('logo99ListTime');
 
 //criando variáveis de lista
 var ifood         = [];
 var uberEats      = [];
 var rappi         = [];
 var james         = [];
+var logo99         = [];
 var lista = [];
 
 //monitorar Bip
@@ -62,6 +65,14 @@ function active_UpdateBip() {
         jamesListTimeElement.className='';
       },5000);
     }
+    if ( data.parceiro == 'logo99' ) {
+      logo99ListElement.className='marcarBordas';
+      logo99ListTimeElement.className='marcarBordas';
+      setTimeout(()=> {
+        logo99ListElement.className='';
+        logo99ListTimeElement.className='';
+      },5000);
+    }
 
   });
 }
@@ -94,6 +105,7 @@ function active_updateLists() {
     uberEats = lista.filter((data) => {return data.parceiro == 'uberEats'});
     rappi = lista.filter((data) => {return data.parceiro == 'rappi'});
     james = lista.filter((data) => {return data.parceiro == 'james'});
+    logo99 = lista.filter((data) => {return data.parceiro == 'logo99'});
 
     update_lists();
 
@@ -109,6 +121,8 @@ function update_lists() {
   removeAllChildNodes(rappiListTimeElement);
   removeAllChildNodes(jamesListElement);
   removeAllChildNodes(jamesListTimeElement);
+  removeAllChildNodes(logo99ListElement);
+  removeAllChildNodes(logo99ListTimeElement);
 
   //ifood
   if ( ifood.length > 0 ) {
@@ -170,6 +184,21 @@ function update_lists() {
       divTime.appendChild(updatedAt);
       jamesListElement.appendChild(divNumber);
       jamesListTimeElement.appendChild(divTime);
+    });
+  }
+  //99food
+  if ( logo99.length > 0 ) {
+    logo99.forEach((data) => {
+      var divNumber = document.createElement('div');
+      var divNumber = document.createElement('h3')
+      var divTime = document.createElement('div');
+      var divTime = document.createElement('h3');
+      var numero = document.createTextNode(`${data.numero}`);  
+      var updatedAt = document.createTextNode(`${data.updatedAt}`);  
+      divNumber.appendChild(numero);
+      divTime.appendChild(updatedAt);
+      logo99ListElement.appendChild(divNumber);
+      logo99ListTimeElement.appendChild(divTime);
     });
   }
 }
