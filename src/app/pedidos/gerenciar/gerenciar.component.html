@@ -46,31 +46,31 @@
                 <div class="col-md-4" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/ifood-logo.png" id="ifood-img" (click)="atualizarparceiro('ifood')">
-                        <input value="" *ngIf="showifood" id="ifoodInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input value="" onInput="this.value = this.value.toUpperCase()" *ngIf="showifood" id="ifoodInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/uber-eats-logo.png" id="uberEats-img" (click)="atualizarparceiro('uberEats')">
-                        <input value="" *ngIf="showuberEats" id="uberEatsInput" maxlength="5" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input value="" onInput="this.value = this.value.toUpperCase()" *ngIf="showuberEats" id="uberEatsInput" maxlength="5" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-top: 25px;" value="logo99">
                     <div value="logo99">
                         <img class="img-logo" src="assets/logo99.png" id="logo99-img" (click)="atualizarparceiro('logo99')">
-                        <input value="" *ngIf="showlogo99" id="logo99Input" maxlength="2" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input value="" onInput="this.value = this.value.toUpperCase()" *ngIf="showlogo99" id="logo99Input" maxlength="2" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/rappi-logo.png" id="rappi-img" (click)="atualizarparceiro('rappi')">
-                        <input value="" *ngIf="showrappi" id="rappiInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input value="" onInput="this.value = this.value.toUpperCase()" *ngIf="showrappi" id="rappiInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
                 <div class="col-md-4" style="margin-top: 25px;" value="james">
                     <div value="james">
                         <img class="img-logo" src="assets/james-logo.png" id="james-img" (click)="atualizarparceiro('james')">
-                        <input value="" *ngIf="showjames" id="jamesInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input value="" onInput="this.value = this.value.toUpperCase()" *ngIf="showjames" id="jamesInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
             </div>
