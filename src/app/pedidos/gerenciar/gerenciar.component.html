@@ -43,34 +43,34 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6" style="margin-top: 25px;">
+                <div class="col-md-4" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/ifood-logo.png" id="ifood-img" (click)="atualizarparceiro('ifood')">
-                        <input *ngIf="showifood" id="ifoodInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input value="" *ngIf="showifood" id="ifoodInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
-                <div class="col-md-6" style="margin-top: 25px;">
+                <div class="col-md-4" style="margin-top: 25px;">
                     <div>
                         <img class="img-logo" src="assets/uber-eats-logo.png" id="uberEats-img" (click)="atualizarparceiro('uberEats')">
-                        <input *ngIf="showuberEats" id="uberEatsInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input value="" *ngIf="showuberEats" id="uberEatsInput" maxlength="5" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
-                <div class="col-md-6" style="margin-top: 25px;">
-                    <div>
-                        <img class="img-logo" src="assets/rappi-logo.png" id="rappi-img" (click)="atualizarparceiro('rappi')">
-                        <input *ngIf="showrappi" id="rappiInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
-                    </div>
-                </div>
-                <div class="col-md-6" style="margin-top: 25px;" value="james">
-                    <div value="james">
-                        <img class="img-logo" src="assets/james-logo.png" id="james-img" (click)="atualizarparceiro('james')">
-                        <input *ngIf="showjames" id="jamesInput" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
-                    </div>
-                </div>
-                <div class="col-md-6" style="margin-top: 25px;" value="logo99">
+                <div class="col-md-4" style="margin-top: 25px;" value="logo99">
                     <div value="logo99">
                         <img class="img-logo" src="assets/logo99.png" id="logo99-img" (click)="atualizarparceiro('logo99')">
-                        <input *ngIf="showlogo99" id="logo99Input" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                        <input value="" *ngIf="showlogo99" id="logo99Input" maxlength="2" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top: 25px;">
+                    <div>
+                        <img class="img-logo" src="assets/rappi-logo.png" id="rappi-img" (click)="atualizarparceiro('rappi')">
+                        <input value="" *ngIf="showrappi" id="rappiInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
+                    </div>
+                </div>
+                <div class="col-md-4" style="margin-top: 25px;" value="james">
+                    <div value="james">
+                        <img class="img-logo" src="assets/james-logo.png" id="james-img" (click)="atualizarparceiro('james')">
+                        <input value="" *ngIf="showjames" id="jamesInput" maxlength="4" style="margin-top: 5px;" class="form-control" [formControl]="numeroDoPedido" (keyup.enter)="chamarPedido()">
                     </div>
                 </div>
             </div>
@@ -88,10 +88,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-1 text-center">
-            <div class="vl text-center"></div>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="row text-center">
                 <div class="col-md-9">
                     <button class="btn btn-dark btn-block radius" disabled>Pedidos chamados</button>
@@ -102,7 +99,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" >
                 <div class="col-md-12 table-wrapper-scroll-y my-custom-scrollbar" style="padding-top: 10px;">
                     <table >
                         <thead>
@@ -112,9 +109,9 @@
                           <tr class="table-secondary" style="color: black;padding:0px;border:1px solid gray">
                             <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:180px" src="assets/img-apps/ifood.png"></td>
                             <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:180px" src="assets/img-apps/uber.png"></td>
+                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/logo99.png"></td>
                             <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:180px" src="assets/img-apps/rappi.png"></td>
                             <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:180px" src="assets/img-apps/james.png"></td>
-                            <td style="color: black;padding:0px;"><img style="width: 100%; height: 100%;max-height:25px;max-width:200px" src="assets/img-apps/logo99.png"></td>
                           </tr>
                         </thead>
                         <tbody *ngFor="let p of Pedidos">
@@ -130,6 +127,11 @@
                                 <i  *ngIf="p.uberEats.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.uberEats?.key)"></i>
                             </td>
                             <td>
+                                {{p.logo99.numero}}
+                                <i *ngIf="p.logo99.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.logo99?.key)"></i>
+                                <i *ngIf="p.logo99.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.logo99?.key)"></i>
+                            </td>
+                            <td>
                                 {{p.rappi.numero}} 
                                 <i *ngIf="p.rappi.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.rappi?.key)"></i>
                                 <i *ngIf="p.rappi.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.rappi?.key)"></i>
@@ -139,16 +141,12 @@
                                 <i *ngIf="p.james.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.james?.key)"></i>
                                 <i *ngIf="p.james.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.james?.key)"></i>
                             </td>
-                            <td>
-                                {{p.logo99.numero}}
-                                <i *ngIf="p.logo99.numero" style="background-color: rgb(0,165,79);color:white;margin:2px;padding:3px" class="fas fa-motorcycle" (click)="liberarPedido(p.logo99?.key)"></i>
-                                <i *ngIf="p.logo99.numero" style="background-color: rgb(245, 130, 32);color:white;margin:2px;padding:3px" class="fas fa-sync-alt" (click)="chamarPedidoNovamente(p.logo99?.key)"></i>
-                            </td>
                           </tr>
-                         
+                          
                         </tbody>
                       </table>
                 </div>
+                
             </div>
             <div class="row" style="margin-top: 5px;">
                 <div class="col-md-3"></div>
@@ -186,18 +184,18 @@
                     <tr>
                       <th scope="col" class="text-center">Ifood</th>
                       <th scope="col" class="text-center">Uber Eats</th>
+                      <th scope="col" class="text-center">99 Food</th>
                       <th scope="col" class="text-center">Rappi</th>
                       <th scope="col" class="text-center">James</th>
-                      <th scope="col" class="text-center">99 Food</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr *ngFor="let hist of historicoTable; index as i">
                       <th class="text-center"><small><b>{{hist.ifood?.numero}}</b> - {{hist.ifood?.updatedAt}}</small></th>
                       <th class="text-center"><small><b>{{hist.uberEats?.numero}}</b> - {{hist.uberEats?.updatedAt}}</small></th>
+                      <th class="text-center"><small><b>{{hist.logo99?.numero}}</b> - {{hist.logo99?.updatedAt}}</small></th>                      
                       <th class="text-center"><small><b>{{hist.rappi?.numero}}</b> - {{hist.rappi?.updatedAt}}</small></th>
                       <th class="text-center"><small><b>{{hist.james?.numero}}</b> - {{hist.james?.updatedAt}}</small></th>                      
-                      <th class="text-center"><small><b>{{hist.logo99?.numero}}</b> - {{hist.logo99?.updatedAt}}</small></th>                      
                     </tr>
                     </tbody>
                   </table>

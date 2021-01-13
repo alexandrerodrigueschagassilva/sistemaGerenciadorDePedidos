@@ -17,6 +17,12 @@ export class AutenticacaoService {
     return this.auth.user;
   }
 
+  updatePassword(newPassword) {
+    this.auth.currentUser.then((user) => {
+      user.updatePassword(newPassword).then(() => {return true}).catch((e) => {return false});
+    })
+  }
+
   logOut(){
     this.auth.signOut();
   }

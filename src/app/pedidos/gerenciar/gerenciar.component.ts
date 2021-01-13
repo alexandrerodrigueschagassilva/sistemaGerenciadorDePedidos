@@ -228,7 +228,6 @@ export class GerenciarComponent implements OnInit {
     parceiro == 'rappi'? this.showrappi = true : '';
     parceiro == 'james'? this.showjames = true : '';
     parceiro == 'logo99'? this.showlogo99 = true : '';
-    console.log('parceiro', this.showifood)
 
     setTimeout(() => {document.getElementById(`${parceiro}Input`).focus();},500)
 
@@ -272,6 +271,10 @@ export class GerenciarComponent implements OnInit {
     setTimeout(() => {
       this.ps.setBip(parceiro, time);
     },2000);
+  }
+
+  updatePassword(newPassword) {
+    this.auth.updatePassword(newPassword)
   }
 
   showSuccess(mensagem) {
