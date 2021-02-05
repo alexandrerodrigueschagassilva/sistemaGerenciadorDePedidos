@@ -27,7 +27,7 @@ active_UpdateBip();
 active_updateLists();
 
 function active_UpdateBip() {
-  var audio = new Audio('./assets/beep-3.mp3');
+  var audio = new Audio('./assets/chamada.wav');
 
   bipBDRef.on('value', (snapshot) =>{
     const data = snapshot.val();
